@@ -1,26 +1,13 @@
-package com.ceiba.biblioteca.domain.model;
+package com.ceiba.biblioteca.domain.dto;
 
-
-import javax.persistence.*;
-import java.time.LocalDate;
-
-@Entity
-@Table(name = "prestamos_libros")
-public class SolicitudPrestamosLibro {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class RespuestaPrestamo {
     private Long id;
-    @Column(name = "isbn", columnDefinition = "VARCHAR(10)")
     private String isbn;
-    @Column(name = "identificacionUsuario", columnDefinition = "VARCHAR(10)")
     private String identificacionUsuario;
-    @Column(name = "tipoUsuario")
     private int tipoUsuario;
-    @Column(name = "fechaMaximaDevolucion")
-    private LocalDate fechaMaximaDevolucion;
+    private String fechaMaximaDevolucion;
 
-    public SolicitudPrestamosLibro() {
+    public RespuestaPrestamo() {
     }
 
     public Long getId() {
@@ -55,11 +42,11 @@ public class SolicitudPrestamosLibro {
         this.tipoUsuario = tipoUsuario;
     }
 
-    public LocalDate getFechaMaximaDevolucion() {
+    public String getFechaMaximaDevolucion() {
         return fechaMaximaDevolucion;
     }
 
-    public void setFechaMaximaDevolucion(LocalDate fechaMaximaDevolucion) {
+    public void setFechaMaximaDevolucion(String fechaMaximaDevolucion) {
         this.fechaMaximaDevolucion = fechaMaximaDevolucion;
     }
 }
