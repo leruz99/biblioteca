@@ -25,12 +25,73 @@ tipoUsuario: determina la relación que tiene el usuario con la biblioteca, corr
 
 
 **Objetivo**
+
 *Crear una API tipo REST la cual permita llevar a cabo las siguientes funcionalidades*.
-1.El Path debe ser /prestamo y el método HTTP tipo POST: permite crear un prestamo con las siguientes validaciones
-Un usuario invitado solo puede tener un libro prestado en la biblioteca, si un usuario invitado intenta prestar más de un libro debería retornar un error HTTP 400 con el siguiente json.
+1.El Path debe ser /prestamo y el método HTTP tipo POST: permite crear un prestamo con las siguientes validaciones.
+
+i.Un usuario invitado solo puede tener un libro prestado en la biblioteca, si un usuario invitado intenta prestar más de un libro debería retornar un error HTTP 400 con el siguiente json.
 
 ***Para verificar si un usuario ya tiene un préstamo se debe usar el campo identificacionUsuario***
 
     {
      "mensaje" : "El usuario con identificación xxxxxx ya tiene un libro prestado por lo cual no se le puede realizar otro préstamo"
     }
+*Donde xxxxxx corresponde a la identificación del usuario que intenta hacer el prestamo*.
+
+ii.Al momento de realizar el préstamo se debe hacer el cálculo de la fecha máxima de devolución del libro, con la siguiente reglas de negocio.
+
+a. Si el préstamo lo hace un usuario tipo afiliado la fecha de devolución debería ser la fecha actual más 10 días sin contar sábados y domingos.
+b. Si el préstamo lo hace un usuario tipo empleado la fecha de devolución debería ser la fecha actual más 8 días sin contar sábados y domingos.
+c. Si el préstamo lo hace un usuario tipo invitado la fecha de devolución debería ser la fecha actual más 7 días sin contar sábados y domingos.
+***Esta fecha deberá ser almacenada en la base de datos junto con toda la información del préstamo***
+
+iii.Si en el campo tipoUsuario llega un valor diferente a los permitidos, deberá retornar un un error HTTP 400 con el siguiente JSON.
+
+{
+      "mensaje" : "Tipo de usuario no permitido en la biblioteca"
+}
+*Ejemplo de petición y respuesta exitosa*.
+
+****Petición path: /prestamo método: POST.****
+
+ {
+     "isbn":"DASD154212",
+     "identificaciónUsuario":"154515485",
+     "tipoUsuario":1
+ }
+ 
+ ****Respuesta exitosa****
+ 
+    {
+        "id": 1,
+        "fechaMaximaDevolucion" : "15/02/2021"
+    }
+    
+    2. El path debe ser /prestamo/{id-prestamo} y el método HTTP tipo GET, donde la variable {id-prestamo} corresponde al identificador con el cual se almacenó el préstamo en la base de datos, explicado en el primer punto. El siguiente es un ejemplo de petición y un ejemplo de cómo debería ser la respuesta en un caso exitoso
+Petición path: /prestamo/1 método: GET.
+
+     {
+         "id": 1,	
+         "isbn":"DASD154212",
+         "identificaciónUsuario":"154515485",
+         "tipoUsuario":1,
+          "fechaMaximaDevolucion" : "15/02/2021"
+     }
+     
+     ***Restricciones técnicas**.
+     1. La base de datos debe ser en memoria, en el archivo application.properties ya se encuentra la configuración la cual está soportada por el motor H2, si necesita modificar estos archivos o algo de la conexión asegúrese de que sea una base de datos en memoria.
+     i. Si necesita ejecutar sentencias DDL(crear tablas, modificar tablas...) antes de que la aplicación se ejecute, debe crear un archivo llamado schema.sql en la carpeta src/main/resources y spring automáticamente lo ejecutará.
+     
+     **Conceptos a evaluar**
+     1. umpliento de los requerimientos: para esto hay 6 pruebas automatizadas en la clase PrestamoTests ubicada en el paquete src/test/java, las cuales son las encargadas de validar que usted cumpla con cada uno de los requerimientos. Estas pruebas se encuentran fallando y su objetivo es hacerlas funcionar correctamente.
+     2. Código limpio: valoramos que su código sea mantenible y con principios de código limpio.
+     3. Arquitectura: valoramos que su arquitectura propuesta demuestre una correcta separación de responsabilidades.
+     
+4. Pruebas unitarias y de integración (deseable): valoramos si logra construir pruebas unitarias y de integración a su lógica de negocio.
+5. Si el sistema identifica que la prueba no ha sido desarrollada por usted inmediatamente se cancela el proceso de selección
+     
+     
+     
+
+
+
