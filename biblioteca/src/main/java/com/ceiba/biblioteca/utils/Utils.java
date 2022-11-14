@@ -10,6 +10,8 @@ public class Utils {
 
     public Utils() {
     }
+    public static final int USUARIO_AFILIADO = 1;
+    public static final int USUARIO_EMPLEADO_BIBLIOTECA = 2;
     public static final int USUARIO_INVITADO = 3;
 
     public static String formatoFechaMaximaDeDevolucion(LocalDate fechaMaximaDevolucion){
@@ -26,13 +28,13 @@ public class Utils {
         int diasAgregadosEmpleadoBiblioteca = 8;
         int diasAgregadosInvitado = 7;
         switch (tipoUsuario){
-            case 1:
+            case USUARIO_AFILIADO:
                 return calcularDiasTotalFechaMaximaDevolucion(fechaMaximaDevolucion, diasAgregados,
                         diasAgregadosAfiliado);
-            case 2:
+            case USUARIO_EMPLEADO_BIBLIOTECA:
                 return calcularDiasTotalFechaMaximaDevolucion(fechaMaximaDevolucion, diasAgregados,
                         diasAgregadosEmpleadoBiblioteca);
-            case 3:
+            case USUARIO_INVITADO:
                 return calcularDiasTotalFechaMaximaDevolucion(fechaMaximaDevolucion, diasAgregados,
                         diasAgregadosInvitado);
             default:
