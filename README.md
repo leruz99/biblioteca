@@ -48,9 +48,10 @@ c. Si el préstamo lo hace un usuario tipo invitado la fecha de devolución debe
 
 iii.Si en el campo tipoUsuario llega un valor diferente a los permitidos, deberá retornar un un error HTTP 400 con el siguiente JSON.
 
-{
+    {
       "mensaje" : "Tipo de usuario no permitido en la biblioteca"
-}
+    }
+
 *Ejemplo de petición y respuesta exitosa*.
 
 ****Petición path: /prestamo método: POST.****
@@ -82,7 +83,8 @@ Petición path: /prestamo/1 método: GET.
      
 ***Restricciones técnicas**.
 1. La base de datos debe ser en memoria, en el archivo application.properties ya se encuentra la configuración la cual está soportada por el motor H2, si necesita modificar estos archivos o algo de la conexión asegúrese de que sea una base de datos en memoria.
-i. Si necesita ejecutar sentencias DDL(crear tablas, modificar tablas...) antes de que la aplicación se ejecute, debe crear un archivo llamado schema.sql en la carpeta src/main/resources y spring automáticamente lo ejecutará.
+
+i.Si necesita ejecutar sentencias DDL(crear tablas, modificar tablas...) antes de que la aplicación se ejecute, debe crear un archivo llamado schema.sql en la carpeta src/main/resources y spring automáticamente lo ejecutará.
      
 **Conceptos a evaluar**
 1. umpliento de los requerimientos: para esto hay 6 pruebas automatizadas en la clase PrestamoTests ubicada en el paquete src/test/java, las cuales son las encargadas de validar que usted cumpla con cada uno de los requerimientos. Estas pruebas se encuentran fallando y su objetivo es hacerlas funcionar correctamente.
