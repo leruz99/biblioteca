@@ -18,7 +18,8 @@
 
 ***isbn: identificador único de un libro (campo alfanumérico de máximo 10 dígitos)
 identificacionUsuario: número de la identificación del usuario (campo alfanumérico de maximo 10 digitos)
-tipoUsuario: determina la relación que tiene el usuario con la biblioteca, corresponde a un campo que puede tener solo alguno de los siguientes dígitos numérico***
+tipoUsuario: determina la relación que tiene el usuario con la biblioteca, corresponde a un campo que puede tener solo alguno de los siguientes dígitos numérico***.
+
 -usuario afilado
 -usuario empleado de la biblioteca
 -usuario invitado
@@ -78,14 +79,15 @@ Petición path: /prestamo/1 método: GET.
           "fechaMaximaDevolucion" : "15/02/2021"
      }
      
-     ***Restricciones técnicas**.
-     1. La base de datos debe ser en memoria, en el archivo application.properties ya se encuentra la configuración la cual está soportada por el motor H2, si necesita modificar estos archivos o algo de la conexión asegúrese de que sea una base de datos en memoria.
-     i. Si necesita ejecutar sentencias DDL(crear tablas, modificar tablas...) antes de que la aplicación se ejecute, debe crear un archivo llamado schema.sql en la carpeta src/main/resources y spring automáticamente lo ejecutará.
      
-     **Conceptos a evaluar**
-     1. umpliento de los requerimientos: para esto hay 6 pruebas automatizadas en la clase PrestamoTests ubicada en el paquete src/test/java, las cuales son las encargadas de validar que usted cumpla con cada uno de los requerimientos. Estas pruebas se encuentran fallando y su objetivo es hacerlas funcionar correctamente.
-     2. Código limpio: valoramos que su código sea mantenible y con principios de código limpio.
-     3. Arquitectura: valoramos que su arquitectura propuesta demuestre una correcta separación de responsabilidades.
+***Restricciones técnicas**.
+1. La base de datos debe ser en memoria, en el archivo application.properties ya se encuentra la configuración la cual está soportada por el motor H2, si necesita modificar estos archivos o algo de la conexión asegúrese de que sea una base de datos en memoria.
+i. Si necesita ejecutar sentencias DDL(crear tablas, modificar tablas...) antes de que la aplicación se ejecute, debe crear un archivo llamado schema.sql en la carpeta src/main/resources y spring automáticamente lo ejecutará.
+     
+**Conceptos a evaluar**
+1. umpliento de los requerimientos: para esto hay 6 pruebas automatizadas en la clase PrestamoTests ubicada en el paquete src/test/java, las cuales son las encargadas de validar que usted cumpla con cada uno de los requerimientos. Estas pruebas se encuentran fallando y su objetivo es hacerlas funcionar correctamente.
+2. Código limpio: valoramos que su código sea mantenible y con principios de código limpio.
+3. Arquitectura: valoramos que su arquitectura propuesta demuestre una correcta separación de responsabilidades.
      
 4. Pruebas unitarias y de integración (deseable): valoramos si logra construir pruebas unitarias y de integración a su lógica de negocio.
 5. Si el sistema identifica que la prueba no ha sido desarrollada por usted inmediatamente se cancela el proceso de selección
